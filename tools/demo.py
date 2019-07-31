@@ -2,39 +2,9 @@ import torch
 from torch import nn
 from PIL import Image
 import torchvision.transforms as T
-from modeling.backbones.resnet import ResNet
+from modeling.baseline import Baseline
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
-class Baseline(nn.Module):
-    in_planes = 2048
-
-    def __init__(self, num_classes, last_stride):
-        super(Baseline, self).__init__()
-        self.base = ResNet(last_stride)
-        self.gap = nn.AdaptiveAvgPool2d(1)
-        self.num_classes = num_classes
-
-        self.bottleneck = nn.BatchNorm1d(self.in_planes)
-        self.bottleneck.bias.requires_grad_(False)  # no shift
-        
-        self.rank_bn = nn.BatchNorm1d(self.in_planes)
-        self.rank_bn.bias.requires_grad_(False)  # no shift
-        self.classifier = nn.Linear(self.in_planes, self.num_classes, bias=False)
-
-    def forward(self, x):
-
-        global_feat = self.gap(self.base(x))  # (b, 2048, 1, 1)
-        global_feat = global_feat.view(global_feat.shape[0], -1)  # flatten to (bs, 2048)
-        feat = self.bottleneck(global_feat)  # normalize for angular softmax
-        return feat
-
-    def load_param(self, trained_path):
-        param_dict = torch.load(trained_path)
-        for i in param_dict:
-            if 'classifier' in i:
-                continue
-            self.state_dict()[i].copy_(param_dict[i])
 
 def euclidean_dist_rank(x, y):
     """
@@ -62,8 +32,8 @@ normalize_transform = T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224,
 transform = T.Compose([T.Resize([256, 128]),T.ToTensor(),normalize_transform])
 
 def main():
-    model = Baseline(num_classes = 702,last_stride =1)
-    model.load_param('work_sapcet1r0.7/resnet50_model_130.pth')
+    model = Baseline(num_classes = 702,last_stride =1, model_path = ' ', stn = 'no', model_name = 'resnet50_ibn_a', pretrain_choice = ' ')
+    model.load_param('models/resnet50_ibn_a/duke_resnet50_ibn_a_model.pth')
     model.to(device)
     model.eval()
 
@@ -81,6 +51,7 @@ def main():
         feat3 = model(img3)
         feats.append(feat3)
     feats = torch.cat(feats, dim=0)
+    feats = torch.nn.functional.normalize(feats, dim=1, p=2)
     dist = euclidean_dist_rank(feats,feats)
     print(dist)
 

@@ -117,3 +117,36 @@ python tools/train.py --config_file='configs/softmax_rankd.yml' DATASETS.NAMES "
 python tools/test.py --config_file='configs/softmax_rankd.yml' MODEL.DEVICE_ID "('your device id')" DATASETS.NAMES "('market1501')" TEST.FEAT_NORM "('yes')" MODEL.PRETRAIN_CHOICE "('self')" TEST.WEIGHT "('your path to trained checkpoints')"
 ```
 
+## Using and Compute threshold of negative and postive samples
+
+1. DukeMTMC-reID
+
+<div align=center>
+<img src='configs/duke_an.png' width='800'>
+</div>
+
+<div align=center>
+<img src='configs/duke_ap.png' width='800'>
+</div>
+
+2. Market1501
+
+<div align=center>
+<img src='configs/mar_an.png' width='800'>
+</div>
+
+<div align=center>
+<img src='configs/mar_ap.png' width='800'>
+</div>
+
+Using
+
+```bash
+python tools/demo.py 
+```
+
+compute threshold
+
+```bash
+python tools/compute_threshold.py --config_file='configs/softmax_ranked.yml' MODEL.PRETRAIN_CHOICE "('self')"  DATASETS.NAMES "('market1501')" TEST.WEIGHT "('models/resnet50_ibn_a/mar_resnet50_ibn_a_model.pth')"
+```

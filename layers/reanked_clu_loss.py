@@ -86,7 +86,6 @@ def pocrank_loss(dist_mat, margin,alpha,tval):
     return total_loss
 
 class CRankedLoss(object):
-
     def __init__(self, margin=None, alpha=None, tval=None):
         self.margin = margin
         self.alpha = alpha

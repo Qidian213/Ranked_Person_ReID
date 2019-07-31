@@ -13,7 +13,7 @@ INPUT:
   PADDING: 10
 
 DATASETS:
-  NAMES: ('market1501') ### dukemtmc , market1501
+  NAMES: ('dukemtmc') ### dukemtmc , market1501
 
 DATALOADER:
   SAMPLER: 'softmax_rank'

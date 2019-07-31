@@ -1,8 +1,4 @@
 # encoding: utf-8
-"""
-@author:  sherlock
-@contact: sherlockliao01@gmail.com
-"""
 
 import argparse
 import os
@@ -20,7 +16,7 @@ from modeling import build_model
 from utils.logger import setup_logger
 from tensorboardX import SummaryWriter
 
-writer = SummaryWriter('./work_sapce')
+writer = SummaryWriter('./work_space')
 
 def normalize(x, axis=-1):
     """Normalizing to unit length along the specified dimension.
@@ -73,7 +69,6 @@ def inference_threshold(cfg,model,data_loader,num_query):
     model.eval()
     for batch_idx, (img, target) in enumerate(data_loader):
         with torch.no_grad():
-#            img, target = batch
             img = img.cuda()
             target = target.cuda()
             feat = model(img)
@@ -82,9 +77,10 @@ def inference_threshold(cfg,model,data_loader,num_query):
             dist_ap, dist_an = hard_example_mining(dist_mat, target)
             writer.add_histogram('dist_ap',dist_ap,batch_idx)
             writer.add_histogram('dist_an',dist_an,batch_idx)
+
         
 def main():
-    parser = argparse.ArgumentParser(description="ReID Baseline Inference")
+    parser = argparse.ArgumentParser(description="ReID Inference")
     parser.add_argument(
         "--config_file", default="", help="path to config file", type=str
     )
