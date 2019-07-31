@@ -145,7 +145,7 @@ Using
 python tools/demo.py 
 ```
 
-compute threshold
+Compute threshold , to compute threshold i use the hardest samples of negative and postive samples in a batchsizes.
 
 ```bash
 python tools/compute_threshold.py --config_file='configs/softmax_ranked.yml' MODEL.PRETRAIN_CHOICE "('self')"  DATASETS.NAMES "('market1501')" TEST.WEIGHT "('models/resnet50_ibn_a/mar_resnet50_ibn_a_model.pth')"
