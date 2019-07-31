@@ -86,7 +86,6 @@ def pocrank_loss(dist_mat, margin,alpha,tval):
     return total_loss
 
 class CRankedLoss(object):
-    """Related Triplet Loss theory can be found in paper 'Ranked List Loss for Deep Metric Learning'."""
 
     def __init__(self, margin=None, alpha=None, tval=None):
         self.margin = margin
