@@ -154,8 +154,6 @@ _C.TEST.IMS_PER_BATCH = 128
 _C.TEST.RE_RANKING = 'no'
 # Path to trained model
 _C.TEST.WEIGHT = ""
-# Which feature of BNNeck to be used for test, before or after BNNneck, options: 'before' or 'after'
-_C.TEST.NECK_FEAT = 'after'
 # Whether feature is nomalized before test, if yes, it is equivalent to cosine distance
 _C.TEST.FEAT_NORM = 'yes'
 

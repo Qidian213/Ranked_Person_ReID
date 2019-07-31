@@ -56,7 +56,6 @@ TEST:
   IMS_PER_BATCH: 32
   RE_RANKING: 'no'
   WEIGHT: "path"
-  NECK_FEAT: 'after'
   FEAT_NORM: 'yes'
 
 OUTPUT_DIR: "work_space"

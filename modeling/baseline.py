@@ -38,7 +38,7 @@ def weights_init_classifier(m):
 class Baseline(nn.Module):
     in_planes = 2048
 
-    def __init__(self, num_classes, last_stride, model_path, stn, neck_feat, model_name, pretrain_choice):
+    def __init__(self, num_classes, last_stride, model_path, stn, model_name, pretrain_choice):
         super(Baseline, self).__init__()
 
         self.model_name = model_name
@@ -167,7 +167,6 @@ class Baseline(nn.Module):
         # self.gap = nn.AdaptiveMaxPool2d(1)
         self.num_classes = num_classes
         self.stn = stn
-        self.neck_feat = neck_feat
 
         self.bottleneck = nn.BatchNorm1d(self.in_planes)
         self.bottleneck.bias.requires_grad_(False)  # no shift
@@ -201,10 +200,7 @@ class Baseline(nn.Module):
             cls_score = self.classifier(feat)
             return cls_score, feat ### feat for ranked loss
         else:
-            if self.neck_feat == 'after':
-                return feat
-            else:
-                return global_feat
+            return feat
 
     def load_param(self, trained_path):
         param_dict = torch.load(trained_path)
