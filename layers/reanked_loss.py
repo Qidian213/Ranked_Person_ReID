@@ -70,7 +70,6 @@ def rank_loss(dist_mat, labels, margin,alpha,tval):
     return total_loss
 
 class RankedLoss(object):
-    """Related Triplet Loss theory can be found in paper 'Ranked List Loss for Deep Metric Learning'."""
 
     def __init__(self, margin=None, alpha=None, tval=None):
         self.margin = margin
