@@ -18,7 +18,7 @@ Bag of tricks
 <img src='configs/res.png' width='800'>
 </div>
 
-[models](https://drive.google.com/drive/folders/1CRQJYoCwx3mARckLb6dZpKzMZ_s3SwI3)
+[models](https://drive.google.com/drive/folders/1CRQJYoCwx3mARckLb6dZpKzMZ_s3SwI3?usp=sharing)
 
 NOTE: For the the limitations of the device (GTX1060 6G), while training Se_ResNet50 and Se_ResNext50 i can only set batchsize = 48, others is 64.
 
