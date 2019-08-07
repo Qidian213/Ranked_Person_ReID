@@ -8,15 +8,15 @@ Bag of tricks
 - Label smoothing
 - Last stride
 
-## Pipeline
-<div align=center>
-<img src='configs/net.png' width='800'>
-</div>
-
 ## Loss function
     1 ranked_loss, SoftMax(LS) + w*RLL, results as "Results". For RLL I use [Ranked List Loss for Deep Metric Learning](https://arxiv.org/abs/1903.03238), what the difference is I set the max distance of two feature to ALPHA. 
     
     2 cranked_loss, SoftMax(LS) + w*RLL(kmeans), before compute RLL i use kemeans to cluster features to help find hard samples. Now I can only get same performance to ranked_loss, so not report results. And for I need to find job, I haven’t studied it for a long time.
+
+## Pipeline
+<div align=center>
+<img src='configs/net.png' width='800'>
+</div>
 
 ## Results
 <div align=center>
