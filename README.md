@@ -101,20 +101,20 @@ NOTE: For the the limitations of the device (GTX1060 6G), while training Se_ResN
 1. Market1501
 
 ```bash
-python tools/train.py --config_file='configs/softmax_rankd.yml' DATASETS.NAMES "('market1501')" 
+python tools/train.py --config_file='configs/softmax_ranked.yml' DATASETS.NAMES "('market1501')" 
 ```
 
 2. DukeMTMC-reID
 
 
 ```bash
-python tools/train.py --config_file='configs/softmax_rankd.yml' DATASETS.NAMES "('dukemtmc')" 
+python tools/train.py --config_file='configs/softmax_ranked.yml' DATASETS.NAMES "('dukemtmc')" 
 ```
 
 ## Test
 
 ```bash
-python tools/test.py --config_file='configs/softmax_rankd.yml' MODEL.DEVICE_ID "('your device id')" DATASETS.NAMES "('market1501')" TEST.FEAT_NORM "('yes')" MODEL.PRETRAIN_CHOICE "('self')" TEST.WEIGHT "('your path to trained checkpoints')"
+python tools/test.py --config_file='configs/softmax_ranked.yml' MODEL.DEVICE_ID "('your device id')" DATASETS.NAMES "('market1501')" TEST.FEAT_NORM "('yes')" MODEL.PRETRAIN_CHOICE "('self')" TEST.WEIGHT "('your path to trained checkpoints')"
 ```
 
 ## Using and Compute threshold of negative and postive samples
