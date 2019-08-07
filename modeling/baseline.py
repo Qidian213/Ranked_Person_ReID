@@ -38,7 +38,7 @@ def weights_init_classifier(m):
 class Baseline(nn.Module):
     in_planes = 2048
 
-    def __init__(self, num_classes, last_stride, model_path, stn, model_name, pretrain_choice):
+    def __init__(self, num_classes, last_stride, model_path, stn_flag, model_name, pretrain_choice):
         super(Baseline, self).__init__()
 
         self.model_name = model_name
@@ -166,7 +166,7 @@ class Baseline(nn.Module):
         self.gap = nn.AdaptiveAvgPool2d(1)
         # self.gap = nn.AdaptiveMaxPool2d(1)
         self.num_classes = num_classes
-        self.stn = stn
+        self.stn_flag = stn_flag
 
         self.bottleneck = nn.BatchNorm1d(self.in_planes)
         self.bottleneck.bias.requires_grad_(False)  # no shift
@@ -188,7 +188,7 @@ class Baseline(nn.Module):
         return x
         
     def forward(self, x):
-        if self.stn == 'yes':
+        if self.stn_flag == 'yes':
             x = self.stn(x)    #### stn
 
         global_feat = self.gap(self.base(x))  # (b, 2048, 1, 1)
