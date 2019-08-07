@@ -70,6 +70,8 @@ def rank_loss(dist_mat, labels, margin,alpha,tval):
     return total_loss
 
 class RankedLoss(object):
+    "Ranked_List_Loss_for_Deep_Metric_Learning_CVPR_2019_paper"
+    
     def __init__(self, margin=None, alpha=None, tval=None):
         self.margin = margin
         self.alpha = alpha

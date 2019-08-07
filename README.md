@@ -13,6 +13,11 @@ Bag of tricks
 <img src='configs/net.png' width='800'>
 </div>
 
+## Loss function
+    1 "ranked_loss", SoftMax(LS) + w*RLL, results as "Results". For RLL I use [Ranked List Loss for Deep Metric Learning](https://arxiv.org/abs/1903.03238), what the difference is I set the max distance of two feature to ALPHA. 
+    
+    2 "cranked_loss", SoftMax(LS) + w*RLL(kmeans), before compute RLL i use kemeans to cluster features to help find hard samples. Now I can only get same performance to "ranked_loss", so not report results. And for I need to find job, I haven’t studied it for a long time.
+
 ## Results
 <div align=center>
 <img src='configs/res.png' width='800'>
@@ -42,7 +47,7 @@ NOTE: For the the limitations of the device (GTX1060 6G), while training Se_ResN
 
     ```bash
     cd reid-strong-baseline
-    mkdir data
+    cd data
     ```
 
     （1）Market1501
@@ -114,7 +119,7 @@ python tools/train.py --config_file='configs/softmax_ranked.yml' DATASETS.NAMES 
 ## Test
 
 ```bash
-python tools/test.py --config_file='configs/softmax_ranked.yml' MODEL.DEVICE_ID "('your device id')" DATASETS.NAMES "('market1501')" TEST.FEAT_NORM "('yes')" MODEL.PRETRAIN_CHOICE "('self')" TEST.WEIGHT "('your path to trained checkpoints')"
+python tools/test.py --config_file='configs/softmax_ranked.yml' MODEL.DEVICE_ID "('your device id')" DATASETS.NAMES "('market1501')" TEST.FEAT_NORM "('yes')" TEST.RE_RANKING "('no')" MODEL.PRETRAIN_CHOICE "('self')" TEST.WEIGHT "('your path to trained checkpoints')"
 ```
 
 ## Using and Compute threshold of negative and postive samples
