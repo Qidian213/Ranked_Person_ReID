@@ -34,13 +34,13 @@ def make_loss(cfg, num_classes):
         def loss_func(score, feat, target):
             if cfg.MODEL.METRIC_LOSS_TYPE == 'ranked_loss':
                 if cfg.MODEL.IF_LABELSMOOTH == 'on':
-                    return  xent(score, target) + 0.4*ranked_loss(feat, target)[0] # new add by zzg, open label smooth
+                    return  xent(score, target) + cfg.SOLVER.WEIGHT*ranked_loss(feat, target)[0] # new add by zzg, open label smooth
                 else:
                     return F.cross_entropy(score, target) + ranked_loss(feat, target)[0]    # new add by zzg, no label smooth
 
             elif cfg.MODEL.METRIC_LOSS_TYPE == 'cranked_loss':
                 if cfg.MODEL.IF_LABELSMOOTH == 'on':
-                    return  xent(score, target) + 0.4*cranked_loss(feat, target)[0] # new add by zzg, open label smooth
+                    return  xent(score, target) +cfg.SOLVER.WEIGHT*cranked_loss(feat, target)[0] # new add by zzg, open label smooth
                 else:
                     return F.cross_entropy(score, target) + cranked_loss(feat, target)[0]    # new add by zzg, no label smooth
             else:
