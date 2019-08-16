@@ -96,7 +96,7 @@ _C.SOLVER.MOMENTUM = 0.9
 _C.SOLVER.MARGIN_RANK = 1.3  ### R = ALPHA - MARGIN_RANK
 _C.SOLVER.ALPHA = 2.0
 _C.SOLVER.TVAL = 1.0
-
+_C.SOLVER.WEIGHT = 0.4       ### loss = softmax + w*ranked_loss
 # Settings of weight decay
 _C.SOLVER.WEIGHT_DECAY = 0.0005
 _C.SOLVER.WEIGHT_DECAY_BIAS = 0.
