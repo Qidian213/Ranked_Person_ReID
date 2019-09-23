@@ -48,7 +48,6 @@ NOTE: For the the limitations of the device (GTX1060 6G), while training Se_ResN
     You can create a directory to store reid datasets under this repo via
 
     ```bash
-    cd reid-strong-baseline
     cd data
     ```
 
@@ -96,7 +95,7 @@ NOTE: For the the limitations of the device (GTX1060 6G), while training Se_ResN
 
     （3）ResNet_IBN_a , faster implementation
 
-    You can download from here [[link]](https://github.com/XingangPan/IBN-Net)
+    You can download from here [[link]](https://drive.google.com/file/d/13lprTFafpXORqs7XXMLYaelbtw6NxQM1/view?usp=sharing)
 
     （4）Load your self-trained model
     If you want to continue your train process based on your self-trained model, you can change the configuration `PRETRAIN_CHOICE` from 'imagenet' to 'self' and set the `PRETRAIN_PATH` to your self-trained model.
